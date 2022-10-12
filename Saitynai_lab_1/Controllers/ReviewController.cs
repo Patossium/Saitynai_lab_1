@@ -1,0 +1,106 @@
+﻿using Saitynai_lab_1.Data.Dtos.Reviews;
+using Saitynai_lab_1.Data.Entities;
+using Saitynai_lab_1.Data.Repositories;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Saitynai_lab_1.Controllers
+{
+    [ApiController]
+    [Route("api/books/{bookId}/reviews")]
+    public class ReviewsController : ControllerBase
+    {
+        private readonly IReviewsRepository _reviewsRepository;
+        private readonly IBooksRepository _booksRepository;
+
+        public ReviewsController(IReviewsRepository reviewsRepository, IBooksRepository booksRepository)
+        {
+            _reviewsRepository = reviewsRepository;
+            _booksRepository = booksRepository;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ReviewsDto>>> GetMany(int bookId)
+        {
+            var book = await _booksRepository.GetAsync(bookId);
+
+            if (book == null)
+                return NotFound();
+
+            var reviews = await _reviewsRepository.GetManyAsync(book);
+            return Ok(reviews.Select(o => new ReviewsDto(o.Id, o.userId, o.Text, o.Book, o.Rating)));
+        }
+
+        [HttpGet()]
+        [Route("{reviewId}", Name = "GetReview")]
+        public async Task<ActionResult<ReviewsDto>> Get(int bookId, int reviewId)
+        {
+            var book = await _booksRepository.GetAsync(bookId);
+
+            if (book == null)
+                return NotFound();
+
+            var review = await _reviewsRepository.GetAsync(book, reviewId);
+
+            if (review == null)
+                return NotFound();
+
+            return new ReviewsDto(review.Id, review.userId, review.Text, review.Book, review.Rating);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ReviewsDto>> Create(int bookId, CreateReviewsDto createReviewsDto)
+        {
+            var book = _booksRepository.GetAsync(bookId);
+
+            if (book == null || book.Result == null)
+                return NotFound();
+
+            var review = new Review { userId = createReviewsDto.UserId, Book = book.Result };
+
+            await _reviewsRepository.CreateAsync(review);
+
+            return Created("", new ReviewsDto(review.Id, review.userId, review.Text, review.Book, review.Rating));
+        }
+
+        [HttpPut]
+        [Route("{reviewId}")]
+        public async Task<ActionResult<ReviewsDto>> Update(int bookId, int reviewId, UpdateReviewsDto updateReviewsDto)
+        {
+            var book = await _booksRepository.GetAsync(bookId);
+
+            if (book == null)
+                return NotFound();
+
+            var review = await _reviewsRepository.GetAsync(book, reviewId);
+
+            if (review == null)
+                return NotFound();
+            
+            review.userId = updateReviewsDto.UserId;
+            review.Text = updateReviewsDto.Text;
+            review.Rating = updateReviewsDto.Rating;
+
+            await _reviewsRepository.UpdateAsync(review);
+
+            return Ok(new ReviewsDto(review.Id, review.userId, review.Text, book, review.Rating));
+        }
+        [HttpDelete]
+        [Route("{reviewId}")]
+        public async Task<ActionResult> Remove(int bookId, int reviewId)
+        {
+            var book = await _booksRepository.GetAsync(bookId);
+
+            if (book == null)
+                return NotFound();
+
+            var review = await _reviewsRepository.GetAsync(book, reviewId);
+
+            if (review == null)
+                return NotFound();
+
+            await _reviewsRepository.DeleteAsync(review);
+
+            return NoContent();
+        }
+    }
+}
