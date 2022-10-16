@@ -66,7 +66,7 @@ namespace Saitynai_lab_1.Controllers
         }
 
         [HttpDelete]
-        [Route("{HotelId}")]
+        [Route("{bookId}")]
         public async Task<ActionResult> Remove(int bookId)
         {
             var book = await _booksRepository.GetAsync(bookId);

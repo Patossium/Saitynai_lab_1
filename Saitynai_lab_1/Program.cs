@@ -13,8 +13,8 @@ builder.Services.AddTransient<IReviewScoresRepository, ReviewScoresRepository>()
 
 var app = builder.Build();
 
-app.UseRouting();
-
 app.MapControllers();
+
+app.UseRouting();
 
 app.Run();

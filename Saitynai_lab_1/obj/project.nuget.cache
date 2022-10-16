@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lq9vowADPyYsXIQgJymseh3uQyfKpk2Letl9pCZ4q1mnWxxmYK1K90asm7dcr6TU0UhqU17dnPSIS4dQoCGZkQ==",
+  "dgSpecHash": "4LfzUiEqmr5jdEkEcSyfRAVSc1cs+lSzrtORToVV+E4koxlAMeKON+tJMO/o5ESTKUQV+oB0Oad+qzPP6F0wMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\37069\\Desktop\\Saitynai\\Saitynai_lab_1\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
+  "projectFilePath": "C:\\Saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\37069\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\37069\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
