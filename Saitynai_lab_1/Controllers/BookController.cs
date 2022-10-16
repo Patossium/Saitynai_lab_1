@@ -47,7 +47,7 @@ namespace Saitynai_lab_1.Controllers
         }
 
         [HttpPut]
-        [Route("{bookId")]
+        [Route("{bookId}")]
         public async Task<ActionResult<BooksDto>> Update(int bookId, UpdateBooksDto updateBooksDto)
         {
             var book = await _booksRepository.GetAsync(bookId);

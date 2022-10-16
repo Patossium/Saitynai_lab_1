@@ -55,7 +55,7 @@ namespace Saitynai_lab_1.Controllers
             if (book == null || book.Result == null)
                 return NotFound();
 
-            var review = new Review { userId = createReviewsDto.UserId, Book = book.Result };
+            var review = new Review { userId = createReviewsDto.UserId, Text = createReviewsDto.Text, Book = book.Result, Rating = createReviewsDto.Rating };
 
             await _reviewsRepository.CreateAsync(review);
 
