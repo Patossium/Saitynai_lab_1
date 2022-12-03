@@ -2012,24 +2012,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\37069\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\p4t0s\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
+      "projectUniqueName": "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
       "projectName": "Saitynai_lab_1",
-      "projectPath": "C:\\Saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
-      "packagesPath": "C:\\Users\\37069\\.nuget\\packages\\",
-      "outputPath": "C:\\Saitynai\\Saitynai_lab_1\\obj\\",
+      "projectPath": "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
+      "packagesPath": "C:\\Users\\p4t0s\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\37069\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\p4t0s\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2037,7 +2032,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2086,7 +2080,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
