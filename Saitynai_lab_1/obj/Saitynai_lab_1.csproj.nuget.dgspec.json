@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj": {}
+    "C:\\Users\\p4t0s\\Desktop\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj": {
+    "C:\\Users\\p4t0s\\Desktop\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
+        "projectUniqueName": "C:\\Users\\p4t0s\\Desktop\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
         "projectName": "Saitynai_lab_1",
-        "projectPath": "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
+        "projectPath": "C:\\Users\\p4t0s\\Desktop\\saitynai\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
         "packagesPath": "C:\\Users\\p4t0s\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\p4t0s\\Documents\\saitynai\\Saitynai_lab_1\\obj\\",
+        "outputPath": "C:\\Users\\p4t0s\\Desktop\\saitynai\\Saitynai_lab_1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\p4t0s\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Saitynai_lab_1.Controllers
 {
     [ApiController]
-    [Route("api/books/{bookId}/reviews/{reviewId}/reviewScores")]
+    [Route("api/books/{bookId}/reviews/{revieId}/reviewScores")]
     public class ReviewScoreController : ControllerBase
     {
         private readonly IBooksRepository _booksRepository;
