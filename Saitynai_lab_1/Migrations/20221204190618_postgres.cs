@@ -6,132 +6,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Saitynai_lab_1.Migrations
 {
-    public partial class postgresql : Migration
+    public partial class postgres : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "userId",
-                table: "Reviews",
-                newName: "UserId");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "UpvoteNumber",
-                table: "ReviewScores",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "ReviewId",
-                table: "ReviewScores",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "DownvoteNumber",
-                table: "ReviewScores",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Id",
-                table: "ReviewScores",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int")
-                .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "Reviews",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Text",
-                table: "Reviews",
-                type: "text",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Rating",
-                table: "Reviews",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "BookId",
-                table: "Reviews",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Id",
-                table: "Reviews",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int")
-                .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            migrationBuilder.AlterColumn<double>(
-                name: "Rating",
-                table: "Books",
-                type: "double precision",
-                nullable: false,
-                oldClrType: typeof(double),
-                oldType: "float");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Books",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Genre",
-                table: "Books",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Author",
-                table: "Books",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Id",
-                table: "Books",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int")
-                .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -169,6 +47,22 @@ namespace Saitynai_lab_1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Author = table.Column<string>(type: "text", nullable: false),
+                    Rating = table.Column<double>(type: "double precision", nullable: false),
+                    Genre = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -277,10 +171,54 @@ namespace Saitynai_lab_1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Reviews_UserId",
-                table: "Reviews",
-                column: "UserId");
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Text = table.Column<string>(type: "text", nullable: false),
+                    BookId = table.Column<int>(type: "integer", nullable: false),
+                    Rating = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReviewScores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UpvoteNumber = table.Column<int>(type: "integer", nullable: false),
+                    DownvoteNumber = table.Column<int>(type: "integer", nullable: false),
+                    ReviewId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReviewScores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ReviewScores_Reviews_ReviewId",
+                        column: x => x.ReviewId,
+                        principalTable: "Reviews",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -319,21 +257,24 @@ namespace Saitynai_lab_1.Migrations
                 column: "NormalizedUserName",
                 unique: true);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Reviews_AspNetUsers_UserId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_BookId",
                 table: "Reviews",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_UserId",
+                table: "Reviews",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReviewScores_ReviewId",
+                table: "ReviewScores",
+                column: "ReviewId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Reviews_AspNetUsers_UserId",
-                table: "Reviews");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -350,134 +291,19 @@ namespace Saitynai_lab_1.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ReviewScores");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Reviews_UserId",
-                table: "Reviews");
-
-            migrationBuilder.RenameColumn(
-                name: "UserId",
-                table: "Reviews",
-                newName: "userId");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "UpvoteNumber",
-                table: "ReviewScores",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "ReviewId",
-                table: "ReviewScores",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "DownvoteNumber",
-                table: "ReviewScores",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Id",
-                table: "ReviewScores",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer")
-                .OldAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            migrationBuilder.AlterColumn<int>(
-                name: "userId",
-                table: "Reviews",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Text",
-                table: "Reviews",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Rating",
-                table: "Reviews",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "BookId",
-                table: "Reviews",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Id",
-                table: "Reviews",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer")
-                .OldAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            migrationBuilder.AlterColumn<double>(
-                name: "Rating",
-                table: "Books",
-                type: "float",
-                nullable: false,
-                oldClrType: typeof(double),
-                oldType: "double precision");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Books",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Genre",
-                table: "Books",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Author",
-                table: "Books",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Id",
-                table: "Books",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer")
-                .OldAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+            migrationBuilder.DropTable(
+                name: "Books");
         }
     }
 }
