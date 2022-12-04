@@ -11,10 +11,10 @@ namespace Saitynai_lab_1.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Text",
                 table: "Reviews",
-                type: "nvarchar(max)",
+                type: "varchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "varchar(max)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -22,11 +22,11 @@ namespace Saitynai_lab_1.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Text",
                 table: "Reviews",
-                type: "nvarchar(max)",
+                type: "varchar(max)",
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldType: "varchar(max)",
                 oldNullable: true);
         }
     }
