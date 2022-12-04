@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8sx4wptyjNBQ37mkB8BrTQR4jKiN90otPfUfsf9VYW9/Cqwv+aXfUl3iSkzV1meAQLwoHg1PSjC81bjoKLlBMw==",
+  "dgSpecHash": "s3nHc4BkyKTCWxNU3U4wBQJDUpNrFzFZZtJXAwO3oLso2PxmshBxJeWUrGRLal33UcJBnrkWouyw//dhu0gMFw==",
   "success": true,
   "projectFilePath": "C:\\Users\\37069\\Desktop\\Saitynai_Var_2\\Saitynai_lab_1\\Saitynai_lab_1.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,8 @@
     "C:\\Users\\37069\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\37069\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\37069\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\37069\\.nuget\\packages\\npgsql\\6.0.7\\npgsql.6.0.7.nupkg.sha512",
+    "C:\\Users\\37069\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.7\\npgsql.entityframeworkcore.postgresql.6.0.7.nupkg.sha512",
     "C:\\Users\\37069\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\37069\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\37069\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
