@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Saitynai_lab_1.Migrations
 {
-    public partial class naujaDB : Migration
+    public partial class postgresql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,7 +63,7 @@ namespace Saitynai_lab_1.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "varchar(max)",
+                oldType: "nvarchar(max)",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
@@ -105,7 +105,7 @@ namespace Saitynai_lab_1.Migrations
                 type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "varchar(max)");
+                oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Genre",
@@ -113,7 +113,7 @@ namespace Saitynai_lab_1.Migrations
                 type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "varchar(max)");
+                oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Author",
@@ -121,7 +121,7 @@ namespace Saitynai_lab_1.Migrations
                 type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "varchar(max)");
+                oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<int>(
                 name: "Id",
@@ -408,7 +408,7 @@ namespace Saitynai_lab_1.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Text",
                 table: "Reviews",
-                type: "varchar(max)",
+                type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "text");
@@ -449,7 +449,7 @@ namespace Saitynai_lab_1.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Books",
-                type: "varchar(max)",
+                type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "text");
@@ -457,7 +457,7 @@ namespace Saitynai_lab_1.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Genre",
                 table: "Books",
-                type: "varchar(max)",
+                type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "text");
@@ -465,7 +465,7 @@ namespace Saitynai_lab_1.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Author",
                 table: "Books",
-                type: "varchar(max)",
+                type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "text");

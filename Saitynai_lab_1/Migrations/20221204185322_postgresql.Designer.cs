@@ -12,8 +12,8 @@ using Saitynai_lab_1.Data;
 namespace Saitynai_lab_1.Migrations
 {
     [DbContext(typeof(BooksDbContext))]
-    [Migration("20221204181150_naujaDB")]
-    partial class naujaDB
+    [Migration("20221204185322_postgresql")]
+    partial class postgresql
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
