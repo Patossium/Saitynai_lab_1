@@ -10,10 +10,5 @@ namespace Saitynai_lab_1.Data.Entities
         public int DownvoteNumber { get; set; }
         public Review Review { get; set; }
 
-        [Required]
-
-        public string UserId { get; set; }
-        public BookUser User { get; set; }
-
     }
 }

@@ -3,6 +3,8 @@ using Saitynai_lab_1.Data.Entities;
 using Saitynai_lab_1.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Update.Internal;
+using Microsoft.AspNetCore.Authorization;
+using Saitynai_lab_1.Auth.Model;
 
 namespace Saitynai_lab_1.Controllers
 {
@@ -37,6 +39,7 @@ namespace Saitynai_lab_1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = BookRoles.Admin)]
         public async Task<ActionResult<BooksDto>> Create(CreateBooksDto createBooksDto)
         {
             var book = new Book {  Name = createBooksDto.Name, Author = createBooksDto.Author, Genre = createBooksDto.Genre, Rating = createBooksDto.Rating };
@@ -48,6 +51,7 @@ namespace Saitynai_lab_1.Controllers
 
         [HttpPut]
         [Route("{bookId}")]
+        [Authorize(Roles = BookRoles.Admin)]
         public async Task<ActionResult<BooksDto>> Update(int bookId, UpdateBooksDto updateBooksDto)
         {
             var book = await _booksRepository.GetAsync(bookId);
@@ -67,6 +71,7 @@ namespace Saitynai_lab_1.Controllers
 
         [HttpDelete]
         [Route("{bookId}")]
+        [Authorize(Roles = BookRoles.Admin)]
         public async Task<ActionResult> Remove(int bookId)
         {
             var book = await _booksRepository.GetAsync(bookId);
