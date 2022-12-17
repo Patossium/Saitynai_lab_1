@@ -118,11 +118,11 @@ namespace Saitynai_lab_1.Controllers
             if (review == null)
                 return NotFound();
 
-            /* authorizationResult = await _authorizationService.AuthorizeAsync(User, review, PolicyNames.ResourceOwner);
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, review, PolicyNames.ResourceOwner);
             if (!authorizationResult.Succeeded)
             {
                 return Forbid();
-            }*/
+            }
 
             await _reviewsRepository.DeleteAsync(review);
 
