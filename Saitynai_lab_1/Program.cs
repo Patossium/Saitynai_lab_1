@@ -15,8 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-var MyAllowSpecificOrigins = "_myAllowCpecificOrigins";
-
 builder.Services.AddControllers();
 
 builder.Services.AddIdentity<BookUser, IdentityRole>()
@@ -51,14 +49,10 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSingleton<IAuthorizationHandler, ResourceOwnerAuthorizationHandler>();
 
-builder.Services.AddCors(options =>
+builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy =>
-        {
-            policy.WithOrigins("*");
-        });
-});
+    build.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
@@ -67,7 +61,7 @@ app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors("corspolicy");
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetRequiredService<BooksDbContext>();
