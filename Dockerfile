@@ -1,27 +1,22 @@
-# https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
-WORKDIR /source
+import bpy
+from mathutils import Matrix as Matrica
 
-# copy csproj and restore as distinct layers
-COPY Saitynai_lab_1/*.csproj .
-RUN dotnet restore -r linux-musl-x64 /p:PublishReadyToRun=true
+bpy.ops.object.transform_apply(scale = True, location = False, rotation = False) #pasirasot, kad naudosit scale matrica ar kaip ji ten vadinas
+objektas = bpy.context.object #
+M = objektas.matrix_world
 
-# copy everything else and build app
-COPY Saitynai_lab_1/. .
-RUN dotnet publish -c Release -o /app -r linux-musl-x64 --self-contained true --no-restore /p:PublishReadyToRun=true /p:PublishSingleFile=true
-
-# final stage/image
-FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-alpine-amd64
-WORKDIR /app
-COPY --from=build /app .
-ENTRYPOINT ["./Saitynai_lab_1"]
-
-# See: https://github.com/dotnet/announcements/issues/20
-# Uncomment to enable globalization APIs (or delete)
-ENV \
-     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
-     LC_ALL=en_US.UTF-8 \
-     LANG=en_US.UTF-8
- RUN apk add --no-cache \
-     icu-data-full \
-     icu-libs
+def MoveScale(Scale, Cnt):
+    m = 0
+    dz = objektas.dimensions[2]
+    for i in range(Cnt):
+        naujas_objektas = objektas.copy()
+        naujas_objektas.data = naujas_objektas.data.copy()
+        dz = objektas.dimensions.z
+        m += ((Scale+1)*dz*(Scale**i))/2
+        M0 = M.Translation((0,0,m))
+        S0 = M.Scale(Scale**(i+1),4)
+        naujas_objektas.matrix_world = M @ M0 @ S0
+        
+        bpy.data.scenes[0].collection.objects.link(naujas_objektas)
+    return
+MoveScale(0.75,5)
