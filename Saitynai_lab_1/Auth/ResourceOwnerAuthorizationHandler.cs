@@ -4,21 +4,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.JsonWebTokens;
 
 
-namespace DemoRestSimonas.Auth;
-
-public class ResourceOwnerAuthorizationHandler : AuthorizationHandler<ResourceOwnerRequirement, IUserOwnedResource>
+namespace DemoRestSimonas.Auth
 {
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ResourceOwnerRequirement requirement,
-        IUserOwnedResource resource)
+    public class ResourceOwnerAuthorizationHandler : AuthorizationHandler<ResourceOwnerRequirement, IUserOwnedResource>
     {
-        if (context.User.IsInRole(BookRoles.Admin) ||
-            context.User.FindFirstValue(JwtRegisteredClaimNames.Sub) == resource.UserId)
+        List<string> tokenBlackList = new List<string>();
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ResourceOwnerRequirement requirement, IUserOwnedResource resource)
         {
-            context.Succeed(requirement);
+            if (context.User.IsInRole(BookRoles.Admin) || context.User.FindFirstValue(JwtRegisteredClaimNames.Sub) == resource.UserId)
+            {
+                context.Succeed(requirement);
+            }
+            return Task.CompletedTask;
         }
-
-        return Task.CompletedTask;
     }
+    public record ResourceOwnerRequirement : IAuthorizationRequirement;
 }
-
-public record ResourceOwnerRequirement : IAuthorizationRequirement;
