@@ -47,13 +47,6 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy(PolicyNames.ResourceOwner, policy => policy.Requirements.Add(new ResourceOwnerRequirement()));
 });
 
-
-
-builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
-{
-    build.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
-}));
-
 builder.Services.AddSingleton<IAuthorizationHandler, ResourceOwnerAuthorizationHandler>();
 
 var app = builder.Build();
@@ -62,8 +55,6 @@ app.UseRouting();
 app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseCors("corspolicy");
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetRequiredService<BooksDbContext>();
