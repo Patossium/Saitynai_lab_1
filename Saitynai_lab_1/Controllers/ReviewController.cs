@@ -35,7 +35,7 @@ namespace Saitynai_lab_1.Controllers
                 return NotFound();
 
             var reviews = await _reviewsRepository.GetManyAsync(book);
-            return Ok(reviews.Select(o => new ReviewsDto(o.Id, o.Text, o.Book, o.Rating)));
+            return Ok(reviews.Select(o => new ReviewsDto(o.Id, o.Text, o.Book, o.Rating, o.UserId)));
         }
 
         [HttpGet()]
@@ -52,7 +52,7 @@ namespace Saitynai_lab_1.Controllers
             if (review == null)
                 return NotFound();
 
-            return new ReviewsDto(review.Id, review.Text, review.Book, review.Rating);
+            return new ReviewsDto(review.Id, review.Text, review.Book, review.Rating, review.UserId);
         }
 
         [HttpPost]
@@ -72,7 +72,7 @@ namespace Saitynai_lab_1.Controllers
 
             await _reviewsRepository.CreateAsync(review);
 
-            return Created("", new ReviewsDto(review.Id, review.Text, review.Book, review.Rating));
+            return Created("", new ReviewsDto(review.Id, review.Text, review.Book, review.Rating, review.UserId));
         }
 
         [HttpPut]
@@ -101,7 +101,7 @@ namespace Saitynai_lab_1.Controllers
 
             await _reviewsRepository.UpdateAsync(review);
 
-            return Ok(new ReviewsDto(review.Id, review.Text, book, review.Rating));
+            return Ok(new ReviewsDto(review.Id, review.Text, book, review.Rating, review.UserId));
         }
         [HttpDelete]
         [Route("{reviewId}")]
@@ -109,6 +109,7 @@ namespace Saitynai_lab_1.Controllers
         public async Task<ActionResult> Remove(int bookId, int reviewId)
         {
             var book = await _booksRepository.GetAsync(bookId);
+
 
             if (book == null)
                 return NotFound();
