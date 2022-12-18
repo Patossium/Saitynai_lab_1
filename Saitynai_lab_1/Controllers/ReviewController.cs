@@ -63,9 +63,10 @@ namespace Saitynai_lab_1.Controllers
 
             if (book == null || book.Result == null)
                 return NotFound();
-            var review = new Review { 
+            var review = new Review
+            {
                 Text = createReviewsDto.Text,
-                Book = book.Result, 
+                Book = book.Result,
                 Rating = createReviewsDto.Rating,
                 UserId = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
             };
@@ -95,7 +96,7 @@ namespace Saitynai_lab_1.Controllers
             {
                 return Forbid();
             }
-            
+
             review.Text = updateReviewsDto.Text;
             review.Rating = updateReviewsDto.Rating;
 
@@ -117,12 +118,6 @@ namespace Saitynai_lab_1.Controllers
 
             if (review == null)
                 return NotFound();
-
-            var authorizationResult = await _authorizationService.AuthorizeAsync(User, review, PolicyNames.ResourceOwner);
-            if (!authorizationResult.Succeeded)
-            {
-                return Forbid();
-            }
 
             await _reviewsRepository.DeleteAsync(review);
 
