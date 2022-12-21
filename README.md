@@ -28,3 +28,5 @@ Administratorius galės:
 2.	Pridėti, redaguoti ar šalinti vartotojų atsiliepimus apie knygas;
 3.	Pridėti, redaguoti ar šalinti vartotojų atsiliepimų įvertinimus;
 4.	Atsijungti.
+
+Pilną ataskaitą galima rasti saugykloje egzistuojančiame faile "Simona_Bliuvaite.pdf"
