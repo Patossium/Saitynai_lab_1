@@ -13,6 +13,7 @@ Neregistruotas sistemos naudotojas galės:
 2.	Peržiūrėti naudotojo registracijos puslapį;
 3.	Peržiūrėti prisijungimo puslapį;
 4.	Prisijungti prie sistemos.
+
 Registruotas sistemos naudotojas galės:
 1.	Peržiūrėti duomenų bazėje egzistuojančių knygų sąrašą;
 2.	Peržiūrėti kitų naudotoju sukurtus atsiliepimus apie knygą;
@@ -21,6 +22,7 @@ Registruotas sistemos naudotojas galės:
 5.	Panaikinti knygos atsiliepimą, jeigu jis priklauso prisijungusiam vartotojui;
 6.	Keisit knygos atsiliepimo įvertinimą (likes and dislikes);
 7.	Atsijungti nuo sistemos.
+
 Administratorius galės:
 1.	Pridėti, redaguoti ar šalinti knygas duomenų bazėje;
 2.	Pridėti, redaguoti ar šalinti vartotojų atsiliepimus apie knygas;
